@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>via</title>
+<meta name="description" content="via — a music community. a frequency you recognize, and then cannot unfeel.">
+<meta name="theme-color" content="#0f0c0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  /* via palette — from the via master reference */
+  :root {
+    --night: #0f0c0a;
+    --ink: #1a1614;
+    --ink-mid: #3a3028;
+    --gold: #a07840;
+    --gold-light: #c8a060;
+    --gold-faint: rgba(200, 160, 96, 0.22);
+    --cream: #ede7dc;
+    --cream-soft: #a89c8a;
+    --cream-faint: #6a5f50;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { min-height: 100%; }
+
+  body {
+    background: var(--night);
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    justify-content: center;
+    padding: 0 16px;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* candlelight glow + faint star field */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 60% 45% at 50% 18%, rgba(160, 120, 64, 0.13), transparent 70%),
+      radial-gradient(1px 1px at 12% 22%, rgba(237, 231, 220, 0.5), transparent 60%),
+      radial-gradient(1px 1px at 82% 14%, rgba(237, 231, 220, 0.4), transparent 60%),
+      radial-gradient(1px 1px at 68% 38%, rgba(200, 160, 96, 0.5), transparent 60%),
+      radial-gradient(1px 1px at 24% 64%, rgba(237, 231, 220, 0.3), transparent 60%),
+      radial-gradient(1px 1px at 90% 72%, rgba(237, 231, 220, 0.35), transparent 60%),
+      radial-gradient(1px 1px at 40% 86%, rgba(200, 160, 96, 0.4), transparent 60%),
+      radial-gradient(1px 1px at 6% 90%, rgba(237, 231, 220, 0.3), transparent 60%),
+      radial-gradient(1px 1px at 55% 6%, rgba(237, 231, 220, 0.3), transparent 60%);
+  }
+
+  .page {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    padding: 72px 0 56px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* the sigil: an octave of circles, thin gold lines */
+  .sigil {
+    width: 112px;
+    height: 112px;
+    margin-bottom: 36px;
+    color: var(--gold);
+  }
+  .sigil .turn { transform-origin: 60px 60px; animation: turn 90s linear infinite; }
+  @keyframes turn { to { transform: rotate(360deg); } }
+
+  .mark {
+    font-family: 'Jost', sans-serif;
+    font-weight: 200;
+    font-size: 2.6rem;
+    letter-spacing: 0.55em;
+    margin-right: -0.55em; /* balance the trailing tracking */
+    color: var(--gold-light);
+    line-height: 1;
+    text-transform: lowercase;
+  }
+
+  .eyebrow {
+    margin-top: 18px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--cream-faint);
+  }
+
+  .tagline {
+    margin-top: 32px;
+    font-style: italic;
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: var(--cream);
+    max-width: 340px;
+  }
+
+  .ornament {
+    margin: 40px 0 36px;
+    font-family: 'Jost', sans-serif;
+    letter-spacing: 0.5em;
+    margin-right: -0.5em;
+    color: var(--gold);
+    opacity: 0.7;
+    font-size: 0.8rem;
+  }
+
+  /* primary invitation */
+  .enter {
+    display: block;
+    width: 100%;
+    padding: 22px 24px;
+    border: 1px solid var(--gold);
+    background: linear-gradient(180deg, rgba(160, 120, 64, 0.16), rgba(160, 120, 64, 0.06));
+    color: var(--gold-light);
+    text-decoration: none;
+    transition: background 0.4s ease, border-color 0.4s ease, color 0.4s ease;
+  }
+  .enter-label {
+    display: block;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+  }
+  .enter-note {
+    display: block;
+    margin-top: 6px;
+    font-style: italic;
+    font-size: 1.02rem;
+    color: var(--cream-soft);
+  }
+  .enter:hover, .enter:focus-visible {
+    background: rgba(160, 120, 64, 0.26);
+    border-color: var(--gold-light);
+    color: #e2c48a;
+  }
+
+  /* secondary links: thin rules, quiet */
+  .links {
+    list-style: none;
+    width: 100%;
+    margin-top: 28px;
+  }
+  .links li { border-bottom: 1px solid var(--gold-faint); }
+  .links li:first-child { border-top: 1px solid var(--gold-faint); }
+  .links a {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 4px;
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 1.15rem;
+    transition: color 0.3s ease, padding 0.3s ease;
+  }
+  .links .label { text-align: left; }
+  .links .hint {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--cream-faint);
+    white-space: nowrap;
+    transition: color 0.3s ease;
+  }
+  .links a:hover, .links a:focus-visible { color: var(--gold-light); padding-left: 10px; }
+  .links a:hover .hint, .links a:focus-visible .hint { color: var(--gold); }
+
+  a:focus-visible { outline: 1px solid var(--gold-light); outline-offset: 4px; }
+
+  .closing {
+    margin-top: 48px;
+    font-style: italic;
+    font-size: 1.02rem;
+    color: var(--cream-soft);
+    max-width: 320px;
+  }
+
+  footer {
+    margin-top: 56px;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cream-faint);
+  }
+
+  /* gentle arrival */
+  .rise { opacity: 0; transform: translateY(8px); animation: rise 1.4s ease forwards; }
+  .d1 { animation-delay: 0.15s; } .d2 { animation-delay: 0.45s; }
+  .d3 { animation-delay: 0.75s; } .d4 { animation-delay: 1.05s; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rise { animation: none; opacity: 1; transform: none; }
+    .sigil .turn { animation: none; }
+  }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <!--
+    ============================================================
+    THE LINKS LIVE HERE.
+    To change a link, swap the address inside href="...".
+    (Or just ask Claude: "change the playlist link to ...")
+    ============================================================
+  -->
+
+  <svg class="sigil rise" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="0.6" aria-hidden="true">
+    <circle cx="60" cy="60" r="56" opacity="0.5"/>
+    <circle cx="60" cy="60" r="40" opacity="0.8"/>
+    <g class="turn">
+      <circle cx="60" cy="40" r="20" opacity="0.6"/>
+      <circle cx="60" cy="80" r="20" opacity="0.6"/>
+      <circle cx="42.7" cy="50" r="20" opacity="0.6"/>
+      <circle cx="77.3" cy="50" r="20" opacity="0.6"/>
+      <circle cx="42.7" cy="70" r="20" opacity="0.6"/>
+      <circle cx="77.3" cy="70" r="20" opacity="0.6"/>
+    </g>
+    <circle cx="60" cy="60" r="1.6" fill="currentColor" stroke="none"/>
+  </svg>
+
+  <h1 class="mark rise d1">via</h1>
+  <p class="eyebrow rise d1">a music community</p>
+
+  <p class="tagline rise d2">not a place you go.<br>a frequency you recognize — and then cannot unfeel.</p>
+
+  <div class="ornament rise d2" aria-hidden="true">· · ·</div>
+
+  <a class="enter rise d3" href="#">
+    <span class="enter-label">enter via</span>
+    <span class="enter-note">join the community</span>
+  </a>
+
+  <ul class="links rise d4">
+    <li><a href="#"><span class="label">listen to the current</span><span class="hint">playlist</span></a></li>
+    <li><a href="#"><span class="label">gather with us</span><span class="hint">events</span></a></li>
+    <li><a href="#"><span class="label">follow the signal</span><span class="hint">instagram</span></a></li>
+  </ul>
+
+  <p class="closing rise d4">discovery that is unfolding.<br>there is a place in it that could not exist without you.</p>
+
+  <footer class="rise d4">via · music is infrastructure</footer>
+</main>
+</body>
+</html>
